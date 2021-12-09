@@ -7,4 +7,4 @@
 ### Участники:
 - [Кравец Полина](https://github.com/Canimussurdis)
 - [Кузьмин Кирилл](https://github.com/Ig0rVItalevich)
-- [Козочкин Михаил](https://github.com/postlog)
+
