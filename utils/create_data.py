@@ -4,6 +4,8 @@ from random import randint
 
 fake = Faker()
 
+gender = ['male', 'female']
+
 def users():
     users = []
     for i in range(10):
@@ -12,6 +14,7 @@ def users():
         user['password'] = fake.word() + str(randint(1, 1000))
         user['mail'] = fake.ascii_email()
         user['birth-date'] = fake.date()
+        user['sex'] = gender[randint(0, 1)]
 
         users.append(user)
 
@@ -26,6 +29,7 @@ def posts():
         post['content'] = fake.paragraph(4)
         post['pub_date'] = fake.date()
         post['user_id'] = randint(1, 10)
+        post['rating'] = randint(1, 10)
 
         posts.append(post)
 

@@ -12,117 +12,57 @@ db_name = "social_network"
 
 connection = None
 
-def insert_customer(connection, cursor):
-    with open("customer.json","r") as read_file: 
-        customers = json.load(read_file)
+def insert_users(connection, cursor):
+    with open("users.json","r") as read_file: 
+        users = json.load(read_file)
 
-    insert_query = """ INSERT INTO customer (customer_name)
-                              VALUES (%s)"""
+    insert_query = """ INSERT INTO users (name, password, mail, birth_date, sex)
+                              VALUES (%s, %s, %s, %s, %s)"""
 
-    for i in range(len(customers)):
-        customer = customers[i]
-        item_tuple = (customer['customer_name'],)
+    for i in range(len(users)):
+        user = users[i]
+        item_tuple = (user["name"], user["password"], user["mail"], user["birth-date"], user["sex"])
         cursor.execute(insert_query, item_tuple)
     
     connection.commit()
 
-def get_seller():
-    with open("seller.json","r") as read_file: 
-        sellers = json.load(read_file)
+def insert_posts(connection, cursor):
+    with open("posts.json","r") as read_file: 
+        posts = json.load(read_file)
 
-    for i in range(len(sellers)):
-        seller = sellers[i]
-        global_sellers.append(seller['name'] + str(i))
+    insert_query = """ INSERT INTO posts (title, content, pub_date, user_id, rating)
+                              VALUES (%s, %s, %s, %s, %s)"""
 
-
-def insert_brand(connection, cursor):
-    with open("brand.json","r") as read_file: 
-        brands = json.load(read_file)
-
-    insert_query = """ INSERT INTO brand (brand_name, designer, foundation_date, country)
-                              VALUES (%s, %s, %s, %s)"""
-
-    for i in range(len(brands)):
-        brand = brands[i]
-        item_tuple = (brand['name'] + str(i), brand['designer'], brand['foundation_date'], brand['country'])
+    for i in range(len(posts)):
+        post = posts[i]
+        item_tuple = (post["title"], post["content"], post["pub_date"], post["user_id"], post["rating"])
         cursor.execute(insert_query, item_tuple)
     
     connection.commit()
 
-def insert_purchase(connection, cursor):
-    with open("order.json","r") as read_file: 
-        orders = json.load(read_file)
+def insert_comments(connection, cursor):
+    with open("comments.json","r") as read_file: 
+        comments = json.load(read_file)
 
-    insert_query = """ INSERT INTO purchase (registration_date, delivery_date, courier, status)
-                              VALUES (%s, %s, %s, %s)"""
+    insert_query = """ INSERT INTO comments (content, post_id, user_id)
+                              VALUES (%s, %s, %s)"""
 
-    for i in range(len(orders)):
-        order = orders[i]
-        item_tuple = (order['registration_date'], order['delivery_date'], order['courier'], order['status'])
-        cursor.execute(insert_query, item_tuple)
-    
-    connection.commit()
-
-def insert_product(connection, cursor):
-    with open("product.json","r") as read_file: 
-        products = json.load(read_file)
-
-    insert_query = """ INSERT INTO product (product_name, category, brand, price, product_rating, seller)
-                              VALUES (%s, %s, %s, %s, %s, %s)"""
-
-    for i in range(len(products)):
-        product = products[i]
-        item_tuple = (product['name'] + str(i), product['category'], product['brand'], product['price'], product['rating'], product['seller'])
-        cursor.execute(insert_query, item_tuple)
-    
-    connection.commit()
-
-def insert_purchase_product(connection, cursor):
-    with open("order_product.json","r") as read_file: 
-        table = json.load(read_file)
-
-    insert_query = """ INSERT INTO purchase_product (purchase_id, product_id)
-                              VALUES (%s, %s)"""
-
-    for i in range(len(table)):
-        node = table[i]
-        item_tuple = (node['order_id'], node['product_id'])
+    for i in range(len(comments)):
+        comment = comments[i]
+        item_tuple = (comment["content"], comment["post_id"], comment["user_id"])
         cursor.execute(insert_query, item_tuple)
     
     connection.commit()
 
 def delete_data(connection, cursor):
-    delete_query = """DELETE FROM seller"""
+    delete_query = """DELETE FROM users"""
     cursor.execute(delete_query)
-    delete_query = """DELETE FROM purchase"""
+    delete_query = """DELETE FROM posts"""
     cursor.execute(delete_query)
-    delete_query = """DELETE FROM product"""
-    cursor.execute(delete_query)
-    delete_query = """DELETE FROM brand"""
-    cursor.execute(delete_query)
-    delete_query = """DELETE FROM purchase_product"""
+    delete_query = """DELETE FROM comments"""
     cursor.execute(delete_query)
 
     connection.commit()
-
-def customer():
-    customers = []
-    with open("seller.json","r") as read_file: 
-        sellers = json.load(read_file)
-    for i in range(1000):
-        customer = {}
-        flag = randint(1, 2)
-        if flag == 1:
-            customer['customer_name'] = fake.unique.name()
-        else:
-            customer['customer_name'] = global_sellers[randint(0, 999)]
-            print(customer)
-
-        customers.append(customer)
-
-    with open("customer.json","w") as write_file: 
-        json.dump(customers, write_file, indent = 4, separators = (',', ': '))
-
 
 try:
     connection = psycopg2.connect(
@@ -134,6 +74,11 @@ try:
     connection.autocommit = True
 
     cursor = connection.cursor()
+
+    delete_data(connection, cursor)
+    insert_users(connection, cursor)
+    insert_posts(connection, cursor)
+    insert_comments(connection, cursor)
 
 except Exception as _ex:
     print("[INFO] Error while working with PostgreSQL", _ex)

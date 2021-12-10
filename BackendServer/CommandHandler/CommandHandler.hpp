@@ -7,16 +7,17 @@
 #include <boost/property_tree/ptree.hpp>
 #include <Wt/Http/Request.h>
 #include <Wt/Http/Response.h>
+#include <Wt/WResource.h>
 #include <iostream>
 #include <string>
 
-class CommandHandler
+class CommandHandler: public Wt::WResource
 {
 public:
     CommandHandler();
-    ~CommandHandler() = default;
+    virtual ~CommandHandler() = default;
 
-    void runRequest(Wt::Http::Request &request, Wt::Http::Response &response);
+    virtual void handleRequest(Wt::Http::Request &request, Wt::Http::Response &response);
 
 private:
     CommandCreator commandCreator;

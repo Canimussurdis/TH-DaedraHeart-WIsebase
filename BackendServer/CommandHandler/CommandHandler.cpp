@@ -3,7 +3,7 @@
 
 CommandHandler::CommandHandler() : commandCreator(), backendLogic() {}
 
-void CommandHandler::runRequest(Wt::Http::Request &request, Wt::Http::Response &response)
+void CommandHandler::handleRequest(Wt::Http::Request &request, Wt::Http::Response &response)
 {
     std::string method = request.method();
     std::string path = request.path();
