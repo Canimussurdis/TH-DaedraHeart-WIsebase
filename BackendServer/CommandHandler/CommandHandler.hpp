@@ -17,7 +17,8 @@ public:
     CommandHandler();
     virtual ~CommandHandler() = default;
 
-    virtual void handleRequest(Wt::Http::Request &request, Wt::Http::Response &response);
+protected:
+    virtual void handleRequest(const Wt::Http::Request &request, Wt::Http::Response &response);
 
 private:
     CommandCreator commandCreator;

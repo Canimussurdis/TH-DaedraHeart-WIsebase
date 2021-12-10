@@ -44,3 +44,6 @@ add_library(back STATIC ${LOGIC}/BackendLogic.cpp
 target_link_libraries(back ${Boost_LIBRARIES} Wt::Wt Wt::HTTP -lpqxx -lpq)
 target_include_directories(back PUBLIC ${LOGIC} ${CREATOR} ${HANDLER} ${CONTROLLER}
                             ${DATABASE} ${MANAGERS} ${COMMANDS})
+
+add_executable(main.exe ${PROJECT_SOURCE_DIR}/BackendServer/main.cpp)
+target_link_libraries(main.exe ${Boost_LIBRARIES} Wt::Wt Wt::HTTP back -lpqxx -lpq)
