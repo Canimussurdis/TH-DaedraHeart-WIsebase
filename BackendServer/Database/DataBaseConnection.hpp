@@ -11,7 +11,8 @@
 class DataBaseConnection
 {
 public:
-    DataBaseConnection();
+    explicit DataBaseConnection(): connection(new pqxx::connection("postgresql://postgres:qwerty123@localhost/social_network")),
+    txn(new pqxx::work(*connection)){};
     ~DataBaseConnection() = default;
 
     void AddUser(boost::property_tree::ptree & params);
@@ -34,8 +35,8 @@ public:
     boost::property_tree::ptree GetPostComments(std::string id);    
 
 private:
-    pqxx::connection connection{"postgresql://postgres:qwerty123@localhost/social_network"};
-    pqxx::work txn{connection};
+    std::shared_ptr<pqxx::connection> connection;
+    std::shared_ptr<pqxx::work> txn;
 };
 
 #endif

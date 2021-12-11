@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 set(CMAKE_CXX_COMPILER "g++")
 set(CMAKE_CXX_STANDARD 14)
 
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror -Wpedantic -g3 -ggdb -lpqxx -lpq")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -g3 -ggdb -lpqxx -lpq")
 
 project(db_social_network)
 
@@ -42,8 +42,8 @@ add_library(back STATIC ${LOGIC}/BackendLogic.cpp
                         ${COMMANDS}/UpdatePostRating.cpp)
 
 target_link_libraries(back ${Boost_LIBRARIES} Wt::Wt Wt::HTTP -lpqxx -lpq)
-target_include_directories(back PUBLIC ${LOGIC} ${CREATOR} ${HANDLER} ${CONTROLLER}
-                            ${DATABASE} ${MANAGERS} ${COMMANDS})
+target_include_directories(back PUBLIC ${LOGIC} ${CREATOR} ${HANDLER} ${CONTROLLER} ${DATABASE} ${MANAGERS} ${COMMANDS})
 
-add_executable(main.exe ${PROJECT_SOURCE_DIR}/BackendServer/main.cpp)
-target_link_libraries(main.exe ${Boost_LIBRARIES} Wt::Wt Wt::HTTP back -lpqxx -lpq)
+# add_executable(main.exe ${PROJECT_SOURCE_DIR}/BackendServer/main.cpp)
+# target_link_libraries(main.exe ${Boost_LIBRARIES} Wt::Wt Wt::HTTP -lpqxx -lpq back)
+# target_include_directories(main.exe PUBLIC ${LOGIC} ${CREATOR} ${HANDLER} ${CONTROLLER} ${DATABASE} ${MANAGERS} ${COMMANDS})

@@ -1,7 +1,8 @@
 #include "Controller.hpp"
 #include <boost/property_tree/ptree.hpp>
 
-Controller::Controller() {}
+Controller::Controller() {
+}
 
 
 boost::property_tree::ptree Controller::addPost(boost::property_tree::ptree &params)

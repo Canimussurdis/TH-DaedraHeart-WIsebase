@@ -2,15 +2,12 @@
 #define BASEMANAGER_H
 
 #include "DataBaseConnection.hpp"
+#include <iostream>
 
 class BaseManager {
 public:
-    BaseManager();
+    explicit BaseManager();
     virtual ~BaseManager() = default;
-
-protected:
-    DataBaseConnection dbConnector;
 };
-
-
+    
 #endif

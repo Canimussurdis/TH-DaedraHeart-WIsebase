@@ -3,6 +3,7 @@
 
 #include "BackendLogic.hpp"
 #include "CommandCreator.hpp"
+#include "DataBaseConnection.hpp"
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <Wt/Http/Request.h>
