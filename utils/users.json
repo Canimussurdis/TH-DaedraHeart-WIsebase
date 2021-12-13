@@ -1,0 +1,72 @@
+[
+    {
+        "name": "Angela King",
+        "password": "stuff87",
+        "mail": "alexis55@huffman.com",
+        "birth-date": "1999-06-03",
+        "sex": "male"
+    },
+    {
+        "name": "Edward Rasmussen",
+        "password": "effort138",
+        "mail": "ucarlson@henry.info",
+        "birth-date": "1980-12-16",
+        "sex": "male"
+    },
+    {
+        "name": "William Hernandez",
+        "password": "tonight503",
+        "mail": "gday@montgomery.info",
+        "birth-date": "2016-04-04",
+        "sex": "female"
+    },
+    {
+        "name": "Christine Norris",
+        "password": "TV430",
+        "mail": "aaronhawkins@bridges.com",
+        "birth-date": "2019-09-22",
+        "sex": "female"
+    },
+    {
+        "name": "Stephen Doyle",
+        "password": "those709",
+        "mail": "andrew16@wheeler.com",
+        "birth-date": "2016-06-01",
+        "sex": "female"
+    },
+    {
+        "name": "Nicholas Phelps",
+        "password": "property133",
+        "mail": "crystalfranco@nelson.info",
+        "birth-date": "2001-03-12",
+        "sex": "female"
+    },
+    {
+        "name": "Michele Aguilar",
+        "password": "commercial479",
+        "mail": "aanderson@hotmail.com",
+        "birth-date": "2001-10-28",
+        "sex": "male"
+    },
+    {
+        "name": "Joseph Everett",
+        "password": "writer143",
+        "mail": "sspencer@yahoo.com",
+        "birth-date": "1976-11-16",
+        "sex": "male"
+    },
+    {
+        "name": "Michelle Cox",
+        "password": "oil458",
+        "mail": "evansamber@yahoo.com",
+        "birth-date": "2018-08-03",
+        "sex": "female"
+    },
+    {
+        "name": "Jesse Porter",
+        "password": "morning674",
+        "mail": "jenniferdavis@hotmail.com",
+        "birth-date": "1981-01-27",
+        "sex": "female"
+    }
+]
