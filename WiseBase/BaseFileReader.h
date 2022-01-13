@@ -1,0 +1,4 @@
+#ifndef BASEFILEREADER_H
+#define BASEFILEREADER_H
+
+#endif // BASEFILEREADER_H
